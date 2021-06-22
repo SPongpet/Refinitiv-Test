@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { ContainerStyle } from './style'
 
 const App = () => {
-  const [inputNumber, setInputNumber] = useState(0)
+  const [inputNumber, setInputNumber] = useState()
   const [inputSelection, setInputSelection] = useState('isPrime')
   const [inputBoolean, setInputBoolean] = useState('')
 
   const onChangeValue = (e) => {
-    setInputNumber(e.target.value)
+    const newInput = e.target.value
+    console.log("🚀 ~ file: App.js ~ line 12 ~ onChangeValue ~ newInput", newInput)
+    setInputNumber(newInput)
   }
 
   const onBlurInput = (e) => {
-    const newInput = parseInt(e.target.value)
-    if (newInput < 0) {
-      setInputNumber(1)
+    if(e.target.value === '') {
+      setInputNumber(e.target.value)
     } else {
+      const newInput = parseInt(e.target.value) < 0 ? 1 : parseInt(e.target.value)
       setInputNumber(Math.round(newInput))
     }
   }
